@@ -1,0 +1,87 @@
+<?php
+/**
+ * @category    design
+ * @package     fw_keepsakequilting
+ */
+?>
+
+<style>#sku-submit-button{float:right}</style>
+<form action="<?php echo $this->getFormAction(); ?>" method="post" <?php if ($this->getIsMultipart()): ?> enctype="multipart/form-data"<?php endif; ?>>
+    <?php echo $this->getBlockHtml('formkey'); ?>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Enter Catalog Source Code (Optional)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input class="input-text" name="catalog_source_code" type="text" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table id="quickorder" class="data-table">
+        <thead>
+            <tr>
+                <th>Item #</th>
+                <?php //<th>Qty</th> ?>
+                <?php //<th>Name</th> ?>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr class="last">
+                <td class="last">
+                    <span class="button" href="#" id="add_new_item_button" title="<?php echo $this->__('Add Another Item') ?>" class="add-row"><span><span><?php echo $this->__('Add Another Item +') ?></span></span></span>
+                    <button id="sku-submit-button" type="submit" title="<?php echo $this->quoteEscape($this->__('Add to Cart')) ?>" class="button"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</form>
+<script id="quickorder-template" type="text/html">
+    <tr>
+        <td>
+            <input class="input-text sku" name="items[#{id}][sku]" type="text" />
+            <input name="items[#{id}][qty]" type="hidden" value="1" />
+        </td>
+        <?php //<td><input class="input-text qty" name="items[#{id}][qty]" pattern="\d*" type="number" /></td> ?>
+        <?php //<td class="name">&nbsp;</td> ?>
+    </tr>
+</script>
+<script>
+    (function($j){
+        $j(function(){
+            var templ = new Template($j("#quickorder-template").html());
+            var tBody = $j("#quickorder tbody");
+            var rowId = 0;
+            for (rowId;rowId<2;) { addRow(); }
+            $j("#add_new_item_button").click(addRow);
+            function addRow(){
+                var row = $j(templ.evaluate({'id':rowId++}));
+                row.find("input.sku").blur(function() {
+                    if($j("#quickorder tr:last-child input.sku").val()) addRow().find("input.sku").focus();
+                    if($j(this).val()) {
+                        var qty = $j(this).closest("tr").find("input.qty");
+                        if (!qty.val()) { qty.val(1); }
+                        /*
+                        $j.getJSON('/api/rest/products/store/<?php echo Mage::app()->getStore()->getStoreId() ?>', {
+                            'filter': [
+                                {'attribute': 'sku', 'in': $j(this).val()}
+                            ]
+                        }, function(response) {
+                            $j.each(response, function(prodid, prod) {
+                                row.find(".name").html(prod.name);
+                            });
+                        });
+                        */
+                    }
+                });
+                tBody.append(row);
+                return row;
+            }
+        });
+    })(jQuery);
+</script>

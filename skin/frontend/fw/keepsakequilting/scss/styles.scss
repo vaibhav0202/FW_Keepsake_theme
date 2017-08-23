@@ -1,0 +1,146 @@
+$mq-support: true;
+$mq-fixed-value: false;
+@import "framework", "core", "fw";
+
+/* Primary Buttons */
+
+.button,
+.cart-table .product-cart-actions .button,
+#co-shipping-method-form .buttons-set .button,
+.footer .button {
+    @include button-gradient($button-top-color, $button-bottom-color);
+}
+
+.cart-table .product-cart-image .cart-links,
+.cart-table .product-cart-info .btn-remove,
+.cart-table .product-cart-actions .button {
+    //display: none;
+}
+
+/* Background */
+
+.wrapper {
+    min-width: 320px;
+    min-height: 100%;
+    margin: 0 auto;
+    margin-bottom: 0 !important;
+    @include bp(min-width, $bp-medium + 1) {
+        background: url('/skin/frontend/fw/keepsakequilting/images/dashed-bg.png') repeat-x scroll center 176px transparent;
+    }
+}
+
+/* Navigation */
+
+.nav-primary {
+    @include bp(min-width, $bp-medium + 1) {
+        a {
+            font-weight: normal;
+
+            &.level0 {
+                font-size: 15px;
+                padding: 17px 11px;
+            }
+
+            &.catalog-request,
+            &.catalog-request:hover {
+                color: $c-blue;
+            }
+        }
+    }
+}
+
+.skip-cart {
+    font-weight: normal;
+}
+
+#header-search {
+    @include bp(min-width, $bp-medium + 1) {
+        width: 20%;
+    }
+}
+
+#header-nav:after {
+    z-index: 0;
+}
+
+.logo {
+    margin-bottom: -2px;
+}
+
+.header-social-links {
+    top: 30px;
+    @include bp(max-width, $bp-medium) {
+        padding-left: 0;
+        margin-bottom: 10px;
+    }
+
+    a {
+        padding: 7px 8px 0;
+
+        &:first-of-type {
+            padding-left: 0;
+        }
+    }
+
+    span.customer-service-phone {
+        display: block;
+        font-size: 16px;
+        border-bottom: 1px dashed #CCC;
+        padding-bottom: 3px;
+    }
+}
+
+.skip-account.skip-link,
+.header-language-background,
+.header-language-background a {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cms-social {
+    display: inline-block;
+    margin: -10px 0 0;
+}
+
+.cms-sister-sites {
+
+    img {
+        padding: 0 20px 0 0;
+    }
+}
+
+.footer-container {
+
+    .footer-links:last-of-type {
+        border-top: 1px solid #999;
+    }
+
+    .footer address {
+        background-color: transparent;
+    }
+}
+
+.catalog-qo-form {
+    margin-top: 15px;
+
+    .data-table {
+        float: left;
+        width: 55%;
+        margin-right: 2.2%;
+        @include bp(min-width, 1255px) {
+            width: 63.5%;
+
+        }
+        @include bp(max-width, 1040px) {
+            width: 100%;
+            float: none;
+            margin-bottom: 15px;
+            margin-right: 0;
+        }
+
+        thead th {
+            @include bp(max-width, 365px) {
+                font-size: 12px;
+            }
+        }
+    }
+}

@@ -1,0 +1,37 @@
+<?php
+/**
+ * @category    design
+ * @package     fw_keepsakequilting
+ */
+?>
+
+<?php
+/**
+ * Top menu for store
+ *
+ * @see Mage_Page_Block_Html_Topmenu
+ */
+?>
+<?php $_menu = $this->getHtml('level-top') ?>
+
+<?php if($_menu): ?>
+    <nav id="nav">
+        <ol class="nav-primary">
+            <?php echo $_menu ?>
+            <li class="level0 parent">
+                <a class="level0 has-children">Shop our catalog</a>
+                <ul class="level0">
+                    <li class="level1">
+                        <a class="level1" href="http://catalog.keepsakequilting.com/t/146404">Online Catalog</a>
+                    </li>
+                    <li class="level1">
+                        <a class="level1" href="<?php echo Mage::getUrl('quickorder') ?>">Catalog Quick Order</a>
+                    </li>
+                    <li class="level1">
+                        <a class="level1" href="<?php echo Mage::getUrl('catalog-request') ?>">Request a Catalog</a>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </nav>
+<?php endif ?>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    design
+ * @package     fw_keepsakequilting
+ */
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="header">
+            <block type="cms/block" name="geo_ad">
+                <action method="setBlockId"><block_id>geo_ad</block_id></action>
+            </block>
+        </reference>
+        <reference name="footer">
+            <action method="unsetChild"><alias>newsletter_callout</alias></action>
+            <action method="insert"><blockName>newsletter_callout</blockName><after>1</after><alias>newsletter_callout</alias></action>
+            <action method="unsetChild"><alias>newsletter</alias></action>
+            <action method="insert"><blockName>footer.newsletter</blockName><after>1</after><alias>newsletter</alias></action>
+            <action method="unsetChild"><alias>footer_promo</alias></action>
+            <action method="insert"><blockName>footer_promo</blockName><after>1</after><alias>footer_promo</alias></action>
+            <action method="unsetChild"><alias>footer_links4</alias></action>
+            <action method="insert"><blockName>footer_links4</blockName><after>1</after><alias>footer_links4</alias></action>
+        </reference>
+    </default>
+</layout>
